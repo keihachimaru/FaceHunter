@@ -124,7 +124,11 @@ Contents and what each variable maps to in code:
    | `CLOUDINARY_API_SECRET` | _(from Cloudinary dashboard)_ | |
    | `FACEHUNTER_API_URL` | `https://api-production-xxxx.up.railway.app` | From Step 4 — see note below |
 
-4. Railway auto-detects `backend/Dockerfile` (multi-stage build: `build` stage compiles TypeScript, `production` stage runs `node dist/main`)
+4. Railway auto-detects `backend/Dockerfile`. The build:
+   - Stage 1 (`build`): installs all deps, compiles TypeScript with `nest build` using `tsconfig.build.json` (outputs to `dist/`)
+   - Stage 2 (`production`): copies only production `node_modules` + `dist/`, discards dev dependencies
+   - On container start, `docker-entrypoint.sh` validates required env vars, then runs `node dist/main`
+
 5. Click **Deploy**
 
 > ⚠️ **`FACEHUNTER_API_URL` requires a code change.** Currently `player.controller.ts:88` hardcodes `http://127.0.0.1:5000/identify-face`. You must edit this file first:
@@ -158,9 +162,9 @@ curl -X POST https://api-production-xxxx.up.railway.app/identify-face \
   -F "file=@api/assets/kei.jpg" \
   -F 'faces=[{"url":"https://api-production-xxxx.up.railway.app/kei.jpg","playerId":"kei"}]'
 
-# 3. NestJS backend — health
-curl https://backend-production-xxxx.up.railway.app/
-# Expected: returns something (HTML or JSON)
+# 3. NestJS backend — health (always responds, even before MongoDB connects)
+curl https://backend-production-xxxx.up.railway.app/health
+# Expected: {"status":"ok","timestamp":"2026-04-29T..."}
 ```
 
 ---
@@ -201,21 +205,29 @@ FLASK_DEBUG=0
 
 ### Pre-deployment (code changes)
 
-- [ ] Fix `Jwt_SECRET` → `JWT_SECRET` in 3 files:
+**Already fixed in this session (push latest commit):**
+- [x] Added `import 'reflect-metadata'` to `backend/src/main.ts:1` — required for NestJS decorators at runtime
+- [x] Moved `mongodb-memory-server` from `dependencies` → `devDependencies` in `backend/package.json`
+- [x] Added `backend/.dockerignore` — excludes `node_modules`, `dist`, `.env` from Docker context
+- [x] Added `backend/docker-entrypoint.sh` — validates env vars at container start, auto-fills `Jwt_SECRET` from `JWT_SECRET`
+- [x] Added `backend/src/health.controller.ts` — `GET /health` endpoint (works without MongoDB)
+- [x] Fixed `tsconfig.build.json` — added `"include": ["src/**/*"]` to prevent `dist/src/` nesting
+
+**Still need to do:**
+- [ ] Fix `Jwt_SECRET` → `JWT_SECRET` in 3 files (unify casing):
   - `backend/src/app.module.ts:39`
   - `backend/src/common/guards/jwt-auth.guard.ts:12`
   - `backend/src/endpoints/auth/jwt-auth.guard.ts:12`
 - [ ] Replace hardcoded `127.0.0.1:5000` with `process.env.FACEHUNTER_API_URL` in:
   - `backend/src/endpoints/player/player.controller.ts:88` (identify-face)
   - `backend/src/endpoints/player/player.controller.ts:133` (check-face)
-- [ ] Move `mongodb-memory-server` from `dependencies` → `devDependencies` in `backend/package.json`
 - [ ] Delete duplicate `backend/src/common/guards/jwt-auth.guard.ts` (keep the one in `endpoints/auth/`)
 - [ ] Restrict CORS in production (replace `*` with frontend domain):
   - `backend/src/main.ts:6`
   - `backend/src/endpoints/game/game.gateway.ts:29`
   - `backend/src/endpoints/message/message.gateway.ts:26`
-- [ ] Run `npm run build` in `backend/` — verify zero errors
-- [ ] Run `npm test` in `backend/` — verify all pass
+- [ ] Run `npm run build` in `backend/` → verify zero errors
+- [ ] Run `npm test` in `backend/` → verify all pass
 - [ ] Commit and push all changes to GitHub
 
 ### Railway Setup

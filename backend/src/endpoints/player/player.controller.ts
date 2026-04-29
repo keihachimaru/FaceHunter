@@ -85,8 +85,9 @@ export class PlayerController {
         });
         form.append('faces', JSON.stringify(faces));
 
+        const FACEHUNTER_API_URL = process.env.FACEHUNTER_API_URL || 'http://127.0.0.1:5000';
         const res = await axios.post(
-            'http://127.0.0.1:5000/identify-face',
+            `${FACEHUNTER_API_URL}/identify-face`,
             form,
             {
                 headers: form.getHeaders(),
@@ -130,8 +131,9 @@ export class PlayerController {
             contentType: file.mimetype,
         });
 
+        const FACEHUNTER_API_URL = process.env.FACEHUNTER_API_URL || 'http://127.0.0.1:5000';
         const res = await axios.post(
-            'http://127.0.0.1:5000/check-face', 
+            `${FACEHUNTER_API_URL}/check-face`, 
             form, 
             {
                 headers: form.getHeaders(),
