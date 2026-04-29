@@ -1,0 +1,19 @@
+# Python virtual environments
+.venv/
+.venv.local/
+venv/
+
+# Node.js dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# VSCode settings (optional, but common)
+.vscode/
+
+# Environment variables
+.env
+.env.local
+mongo_data/
+/mongo_data/
