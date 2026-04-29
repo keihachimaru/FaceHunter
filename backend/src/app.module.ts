@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { HealthController } from './health.controller';
 import { AuthModule } from './endpoints/auth/auth.module';
 import { BulletModule } from './endpoints/bullet/bullet.module';
 import { CommentModule } from './endpoints/comment/comment.module';
@@ -41,6 +42,7 @@ import { CloudinaryModule } from './endpoints/cloudinary/cloudinary.module';
     }),
     CloudinaryModule,
   ],
+  controllers: [HealthController],
   providers: [],
 })
 export class AppModule {}

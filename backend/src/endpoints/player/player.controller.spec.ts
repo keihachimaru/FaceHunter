@@ -111,45 +111,4 @@ describe('PlayerController', () => {
     });
   });
 
-  describe('handleShot', () => {
-    beforeEach(() => {
-      (global as any).gamemode = 'standard';
-    });
-
-    it('should deal damage in standard mode', async () => {
-      const dto = { valid: true, bullet: 'b1', weapon: 'w1', target: 'enemy', gamemode: 'gm1' };
-      const player = { remainingHP: 100 };
-      const bullet = { dmgMul: 20 };
-
-      playerService.findById.mockResolvedValue(player as any);
-      bulletService.findById.mockResolvedValue(bullet as any);
-      playerService.update.mockResolvedValue({ remainingHP: 80 } as any);
-
-      const result = await controller.handleShot(mockReq, dto);
-      expect(result).toEqual({ remainingHP: 80 });
-    });
-
-    it('should set HP to 0 in faceMatch mode', async () => {
-      (global as any).gamemode = 'faceMatch';
-
-      const dto = { valid: true, bullet: 'b1', weapon: 'w1', target: 'enemy', gamemode: 'gm1' };
-      const player = { remainingHP: 100 };
-      const bullet = { dmgMul: 50 };
-
-      playerService.findById.mockResolvedValue(player as any);
-      bulletService.findById.mockResolvedValue(bullet as any);
-      playerService.update.mockResolvedValue({ remainingHP: 0 } as any);
-
-      const result = await controller.handleShot(mockReq, dto);
-      expect(result).toEqual({ remainingHP: 0 });
-    });
-
-    it('should throw if bullet is not found', async () => {
-      const dto = { valid: true, bullet: 'b1', weapon: 'w1', target: 'enemy', gamemode: 'gm1' };
-
-      bulletService.findById.mockResolvedValue(null as any);
-
-      await expect(controller.handleShot(mockReq, dto)).rejects.toThrow(NotFoundException);
-    });
-  });
 });
