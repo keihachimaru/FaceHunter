@@ -62,9 +62,9 @@ Contents and what each variable maps to in code:
 | `MONGODB_URI` | `mongodb://localhost:27017/facehunterdb` | `app.module.ts:23` — `process.env.MONGODB_URI` |
 | `JWT_SECRET` | `5eb8a16c...` (generated) | `auth.service.ts:47,57`, `message.gateway.ts:48`, `message.module.ts:15` |
 | `Jwt_SECRET` | `5eb8a16c...` (same value) | `app.module.ts:39`, `common/guards/jwt-auth.guard.ts:12`, `endpoints/auth/jwt-auth.guard.ts:12` |
-| `CLOUDINARY_CLOUD_NAME` | _(set yours)_ | `cloudinary.module.ts:15` |
-| `CLOUDINARY_API_KEY` | _(set yours)_ | `cloudinary.module.ts:16` |
-| `CLOUDINARY_API_SECRET` | _(set yours)_ | `cloudinary.module.ts:17` |
+| `CLOUDINARY_CLOUD_NAME` | dehbpmt0m | `cloudinary.module.ts:15` |
+| `CLOUDINARY_API_KEY` | 384574467794681 | `cloudinary.module.ts:16` |
+| `CLOUDINARY_API_SECRET` | bWV8hO23_lsQXBG445BUMXA6pmI | `cloudinary.module.ts:17` |
 
 > ⚠️ **Both `JWT_SECRET` and `Jwt_SECRET` must be set to the same value.** The code uses both casings (see `MUST_FIX.md` item #1 — this is a known bug tracked for fix).
 
