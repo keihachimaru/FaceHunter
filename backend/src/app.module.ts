@@ -14,7 +14,7 @@ import { RoleModule } from './endpoints/role/role.module';
 import { ShotModule } from './endpoints/shot/shot.module';
 import { UserModule } from './endpoints/user/user.module';
 import { WeaponModule } from './endpoints/weapon/weapon.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryModule } from './endpoints/cloudinary/cloudinary.module';
 
@@ -22,11 +22,9 @@ import { CloudinaryModule } from './endpoints/cloudinary/cloudinary.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (config: ConfigService) => ({
-        uri: config.get<string>('MONGODB_URI'),
+      useFactory: () => ({
+        uri: process.env.MONGODB_URI,
       }),
-      inject: [ConfigService],
     }), 
     AuthModule, 
     BulletModule, 
