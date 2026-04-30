@@ -29,9 +29,9 @@ import { CloudinaryModule } from './endpoints/cloudinary/cloudinary.module';
       inject: [ConfigService],
     }),
     JwtModule.registerAsync({
+      global: true,
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({
-        global: true,
         secret: config.get<string>('JWT_SECRET'),
         signOptions: { expiresIn: '1d' },
       }),

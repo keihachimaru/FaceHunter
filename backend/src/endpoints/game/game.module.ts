@@ -18,6 +18,7 @@ import { FacehuntModule } from '../facehunt/facehunt.module';
         MongooseModule.forFeature([{ name: Game.name, schema: GameSchema }]),
         PlayerModule,
         UserModule,
+        JwtModule,
         ShotModule,
         GamemodeModule,
         FacehuntModule,
