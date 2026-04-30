@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 import { HealthController } from './health.controller';
 import { AuthModule } from './endpoints/auth/auth.module';
 import { BulletModule } from './endpoints/bullet/bullet.module';
@@ -14,36 +16,40 @@ import { RoleModule } from './endpoints/role/role.module';
 import { ShotModule } from './endpoints/shot/shot.module';
 import { UserModule } from './endpoints/user/user.module';
 import { WeaponModule } from './endpoints/weapon/weapon.module';
-import { ConfigModule } from '@nestjs/config';
-import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryModule } from './endpoints/cloudinary/cloudinary.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRootAsync({
-      useFactory: () => ({
-        uri: process.env.MONGODB_URI,
+      imports: [ConfigModule],
+      useFactory: (config: ConfigService) => ({
+        uri: config.get<string>('MONGODB_URI'),
       }),
-    }), 
-    AuthModule, 
-    BulletModule, 
-    CommentModule, 
+      inject: [ConfigService],
+    }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: (config: ConfigService) => ({
+        global: true,
+        secret: config.get<string>('JWT_SECRET'),
+        signOptions: { expiresIn: '1d' },
+      }),
+      inject: [ConfigService],
+    }),
+    AuthModule,
+    BulletModule,
+    CommentModule,
     FacehuntModule,
-    GameModule, 
+    GameModule,
     GamemodeModule,
-    LikeModule, 
+    LikeModule,
     MessageModule,
-    PlayerModule, 
+    PlayerModule,
     RoleModule,
     ShotModule,
     UserModule,
     WeaponModule,
-    JwtModule.register({
-        global: true,
-        secret: process.env.Jwt_SECRET,
-        signOptions: { expiresIn: '1d' }
-    }),
     CloudinaryModule,
   ],
   controllers: [HealthController],
