@@ -14,14 +14,20 @@ import { RoleModule } from './endpoints/role/role.module';
 import { ShotModule } from './endpoints/shot/shot.module';
 import { UserModule } from './endpoints/user/user.module';
 import { WeaponModule } from './endpoints/weapon/weapon.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryModule } from './endpoints/cloudinary/cloudinary.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/facehunterdb'), 
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (config: ConfigService) => ({
+        uri: config.get<string>('MONGODB_URI'),
+      }),
+      inject: [ConfigService],
+    }), 
     AuthModule, 
     BulletModule, 
     CommentModule, 
