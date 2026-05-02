@@ -3,27 +3,28 @@ import { Pressable, View, Text, StyleSheet, Image, TextInput, FlatList, Touchabl
 import { useRouter } from 'expo-router';
 
 import { Colors } from '@/constants/Colors';
-import ImmersiveMode from 'react-native-immersive';
+import { userType } from '@/interfaces';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
 import LoadingScreen from '@/components/layout/LoadingScreen';
 import GoBackButton from '@/components/ui/GoBackButton';
 import DeepButton from '@/components/ui/DeepButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getSession, getUserData, logout} from '@/services/authService';
+import { getSession, logout} from '@/services/authService';
 
 export default function Account() {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
 
-  const [session, setSession] = useState<number | null>(null);
+  const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    ImmersiveMode.on();
+    enableImmersive();
 
     return () => {
-      ImmersiveMode.off();
+      disableImmersive();
     };
   }, []);
 

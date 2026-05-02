@@ -10,8 +10,6 @@ import {
   Keyboard,
 } from "react-native";
 import { Colors } from "@/constants/Colors";
-import ImmersiveMode from 'react-native-immersive';
-
 interface KeyboardProps {
   onSend: (text: string) => void;
   placeholder?: string;

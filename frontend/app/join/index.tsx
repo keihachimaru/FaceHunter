@@ -16,12 +16,12 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
 
-import { getSession, getUserData } from '@/services/authService';
+import { getSession } from '@/services/authService';
 import { uploadPicture } from '@/services/playerService';
 import { joinGame, getPlayerOptions, getWaitingPlayers, getGamemode } from '@/services/gameService';
 import { userType, playerOptionsType, waitingPlayersType } from '@/interfaces';
 import { Colors } from '@/constants/Colors';
-import ImmersiveMode from 'react-native-immersive';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
 import Constants from 'expo-constants';
 import GoBackButton from '@/components/ui/GoBackButton';
 import DeepButton from '@/components/ui/DeepButton';
@@ -42,7 +42,7 @@ export default function Join() {
     const params = useLocalSearchParams<{ gameId?: string }>();
     const initialGameId = params.gameId;
 
-    const [session, setSession] = useState<number | null>(null);
+    const [session, setSession] = useState<string | null>(null);
     const [user, setUser] = useState<userType | null>(null);
 
     const [gameId, setGameId] = useState<string>(initialGameId || '');

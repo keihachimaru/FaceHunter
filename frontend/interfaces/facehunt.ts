@@ -10,6 +10,8 @@ export interface likeType {
 
 export interface commentType {
     author: number;
+    username?: string;
     comment: string;
-    id: number;
+    profilePic?: string;
+    id?: number;
 }

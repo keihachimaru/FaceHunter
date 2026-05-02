@@ -9,6 +9,7 @@ interface LikeButtonProps {
   onPress: () => void;
   style?: ViewStyle;
   liked: Boolean;
+  dislike?: boolean;
 }
 
 export default function LikeButton({ onPress, style, liked, dislike }: LikeButtonProps) {

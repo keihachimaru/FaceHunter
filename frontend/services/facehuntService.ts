@@ -8,7 +8,7 @@ export async function postComment(id: number, comment: commentType) {
     console.log(`Author ${comment.author} posted ${comment.comment}`);
 }
 
-export async function getLikes(id: number): Promise<likeType | null> {
+export async function getLikes(id: number): Promise<likeType[]> {
     return [
         {
             author: 10,

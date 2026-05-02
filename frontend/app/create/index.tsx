@@ -14,12 +14,12 @@ import {
   Image
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { getSession, getUserData } from '@/services/authService';
+import { getSession } from '@/services/authService';
 import { getGamemodeOptions } from '@/services/gamemodeService';
 import { createGame, notifyFriends as notifyFriendsService } from '@/services/gameService';
 import { userType, gamemodeOptionsType, gameType } from '@/interfaces';
 import { Colors } from '@/constants/Colors';
-import ImmersiveMode from 'react-native-immersive';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
 import Constants from 'expo-constants';
 
 import GoBackButton from '@/components/ui/GoBackButton';
@@ -42,7 +42,7 @@ export default function Create() {
 
   const [loading, setLoading] = useState(true);
 
-  const [session, setSession] = useState<number | null>(null);
+  const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);
 
   const [gamemodeOptions, setGamemodeOptions] = useState<gamemodeOptionsType[]>([]);
@@ -55,8 +55,8 @@ export default function Create() {
   const [showQR, setShowQR] = useState(true);
 
   useEffect(() => {
-    ImmersiveMode.on();
-    return () => ImmersiveMode.off();
+    enableImmersive();
+    return () => disableImmersive();
   }, []);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Create() {
                 setUser(userData);
 
                 const gamemodeOptionsData = await getGamemodeOptions();
-                setGamemodeOptions(gamemodeOptionsData);
+                setGamemodeOptions(gamemodeOptionsData ?? []);
             } catch(err) {
                 console.error(err);
                 await AsyncStorage.removeItem('sessionToken');

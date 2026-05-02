@@ -5,8 +5,8 @@ import LikeButton from '@/components/ui/LikeButton';
 
 interface FacehunterContainerProps {
   image: string;
-  hasLiked: Boolean;
-  setHasLiked: () => void;
+  hasLiked: boolean;
+  setHasLiked: (value: boolean) => void;
   onPress: () => void;
 }
 

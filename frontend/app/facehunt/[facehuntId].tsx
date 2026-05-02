@@ -2,11 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Pressable, View, Text, StyleSheet, TextInput, Image, FlatList, TouchableOpacity, Alert, useColorScheme, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 
-import { getSession, getUserData } from '@/services/authService';
+import { getSession } from '@/services/authService';
 import { postComment, likeFacehunt, getLikes, getComments, getFacehunt } from '@/services/facehuntService';
-import { facehuntType, likeType, commentType, userType } from '@/interfaces';
+import { userType } from '@/interfaces';
+import type { facehuntType, likeType, commentType } from '@/interfaces/facehunt';
 import { Colors } from '@/constants/Colors';
-import ImmersiveMode from 'react-native-immersive';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Comment from '@/components/ui/Comment';
 import GoBackButton from '@/components/ui/GoBackButton';
 import FacehuntContainer from '@/components/layout/FacehuntContainer';
@@ -19,46 +21,52 @@ export default function Facehunt() {
   const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
   const { facehuntId } = useLocalSearchParams();
 
-  const [session, setSession] = useState<number | null>(null);
+  const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);
   const [loading, setLoading] = useState(true);
   const [facehunt, setFacehunt] = useState<facehuntType | null>(null);
-  const [likes, setLikes] = useState<likeType[] | []>([]);
-  const [comments, setComments] = useState<commentType[] | []>([]);
-  const [hasLiked, setHasLiked] = useState<Boolean>(false);
+  const [likes, setLikes] = useState<likeType[]>([]);
+  const [comments, setComments] = useState<commentType[]>([]);
+  const [hasLiked, setHasLiked] = useState<boolean>(false);
 
 
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {
-    ImmersiveMode.on();
+    enableImmersive();
 
     return () => {
-      ImmersiveMode.off();
+      disableImmersive();
     };
   }, []);
 
   useEffect(() => {
     async function load() {
-      const sess = await getSession();
-      setSession(sess);
-      if (sess) {
-        const userData = await getUserData();
-        setUser(userData);
+      const token = await AsyncStorage.getItem('sessionToken');
+      if (token) {
+        try {
+          const sess = await getSession(token);
+          setSession(token);
+          setUser(sess);
 
-        const likesData = await getLikes(facehuntId);
-        setLikes(likesData);
+          const likesData = await getLikes(Number(facehuntId));
+          setLikes(likesData ?? []);
 
-        const facehuntData = await getFacehunt(facehuntId);
-        setFacehunt(facehuntData);
+          const facehuntData = await getFacehunt(Number(facehuntId));
+          setFacehunt(facehuntData ?? null);
 
-        const commentsData = await getComments(facehuntId);
-        setComments(commentsData);
+          const commentsData = await getComments(Number(facehuntId));
+          setComments(commentsData ?? []);
 
-        setHasLiked(likesData.some(obj => obj.author === userData.id));
-      }
-      else {
+          setHasLiked((likesData ?? []).some(obj => obj.author === sess.id));
+        } catch {
+          await AsyncStorage.removeItem('sessionToken');
+          setSession(null);
+          setUser(null);
           router.replace('/');
+        }
+      } else {
+        router.replace('/');
       }
       setLoading(false);
     }
@@ -74,22 +82,23 @@ export default function Facehunt() {
   */
 
   function onPressLikeFacehunt() {
-    likeFacehunt(facehuntId);
+    likeFacehunt(Number(facehuntId));
     setHasLiked(!hasLiked);
   }
 
   function onPressPostComment(text : string | null) {
-    if (!text.trim()) return;
+    if (!text?.trim()) return;
+    if (!user) return;
     const comment : commentType = {
-        author: user.name,
+        author: user.id,
         comment: text.trim(),
     }
-    postComment(facehuntId, comment);
+    postComment(Number(facehuntId), comment);
   }
 
   if (loading) {
     return (
-      <View style={[styles.center, { backgroundColor: colors.background }]}>
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
         <Text style={{ color: colors.textPrimary }}>Loading...</Text>
       </View>
     );
@@ -108,7 +117,7 @@ export default function Facehunt() {
               ListHeaderComponent={
                 <>
                   <FacehuntContainer
-                    image={facehunt.hunt}
+                    image={facehunt?.hunt ?? ''}
                     hasLiked={hasLiked}
                     setHasLiked={setHasLiked}
                     onPress={onPressLikeFacehunt}
@@ -118,7 +127,7 @@ export default function Facehunt() {
               data={comments}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
-                <Comment profilePic={item.profilePic} comment={item.comment} />
+                <Comment profilePic={item.profilePic ?? ''} comment={item.comment} />
               )}
               contentContainerStyle={{ paddingBottom: 10 }}
             />

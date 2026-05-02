@@ -5,7 +5,7 @@ import { getSession } from '@/services/authService';
 import { getOtherUserData } from '@/services/chatService';
 import { userType, messageType } from '@/interfaces';
 import { Colors } from '@/constants/Colors';
-import ImmersiveMode from 'react-native-immersive';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
 import { Ionicons } from '@expo/vector-icons';
 import dayjs from 'dayjs';
 import ChatHeader from '@/components/layout/ChatHeader';
@@ -25,15 +25,15 @@ export default function Chat() {
     const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
     const { chatId } = useLocalSearchParams();
 
-    const [session, setSession] = useState<number | null>(null);
+    const [session, setSession] = useState<string | null>(null);
     const [user, setUser] = useState<userType | null>(null);
     const [loading, setLoading] = useState(true);
     const [otherUser, setOtherUser] = useState<userType | null>(null);
     const { messages, sendMessage } = useChat(user, chatId as string);
 
     useEffect(() => {
-        ImmersiveMode.on();
-        return () => ImmersiveMode.off();
+        enableImmersive();
+        return () => disableImmersive();
     }, []);
 
     useEffect(() => {
@@ -54,7 +54,7 @@ export default function Chat() {
                 }
                 catch(err) {
                     await AsyncStorage.removeItem('sessionToken');
-                    setSesion(null);
+                    setSession(null);
                     setUser(null);
                     router.replace('/');
                 }
@@ -103,12 +103,12 @@ export default function Chat() {
         >
             <View style={[styles.container, { backgroundColor: colors.background }]}>
                 {/* Header */}
-                <ChatHeader otherUser={otherUser} direction="/friends" />
+                <ChatHeader otherUser={otherUser ?? undefined} direction="/friends" />
 
                 {/* Chat list */}
                 <MessagesList
                     messages={buildChatList()}
-                    currentUserID={user.id}
+                    currentUserID={String(user.id)}
                 />
 
                 <Keyboard onSend={handleSend} placeholder="Send a message..."/>

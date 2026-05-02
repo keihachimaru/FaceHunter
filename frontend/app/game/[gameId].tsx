@@ -35,7 +35,7 @@ import RoundInfo from '@/components/ui/RoundInfo';
 import GameActionBar from '@/components/ui/GameActionBar';
 import GameOverlay from '@/components/ui/GameOverlay';
 
-import ImmersiveMode from 'react-native-immersive';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
 import LoadingScreen from '@/components/layout/LoadingScreen';
 import LikeButton from '@/components/ui/LikeButton';
 
@@ -83,12 +83,12 @@ export default function Game() {
 
   useEffect(() => {
     requestPermission();
-    ImmersiveMode.on();
+    enableImmersive();
     if(phase=='playing') ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
     else ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
 
     return () => {
-      ImmersiveMode.off();
+      disableImmersive();
     };
   }, []);
   

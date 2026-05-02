@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FlatList, StyleSheet, View, ViewStyle } from "react-native";
 import Comment from "@/components/ui/Comment";
 

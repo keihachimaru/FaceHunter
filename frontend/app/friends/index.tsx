@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, View, Text, StyleSheet, Image, FlatList, TouchableOpacity, Alert, useColorScheme } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import { getSession, getUserData } from '@/services/authService';
+import { getSession } from '@/services/authService';
 import { getFriends } from '@/services/friendService';
-import { Post, userType, friendType, gameType } from '@/interfaces';
+import { userType, friendType } from '@/interfaces';
 import { Colors } from '@/constants/Colors';
-import ImmersiveMode from 'react-native-immersive';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import GoBackButton from '@/components/ui/GoBackButton';
@@ -18,16 +18,16 @@ export default function Friends() {
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
 
-  const [session, setSession] = useState<number | null>(null);
+  const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);
   const [loading, setLoading] = useState(true);
-  const [friendsList, setFriendsList] = useState<friendType[] | []>(null);
+  const [friendsList, setFriendsList] = useState<friendType[]>([]);
 
   useEffect(() => {
-    ImmersiveMode.on();
+    enableImmersive();
 
     return () => {
-      ImmersiveMode.off();
+      disableImmersive();
     };
   }, []);
 
@@ -75,9 +75,9 @@ export default function Friends() {
               data={friendsList}
               keyExtractor={(item) => item.id.toString()}
               showsVerticalScrollIndicator={false}
-              contententContainerStyle={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 10 }}
+              contentContainerStyle={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 10 }}
               renderItem={({ item }) => (
-                <FriendCard name={item.username} profilePic={item?.profilePic} id={item.id}/>
+                <FriendCard name={item.username} profilePic={item?.profilePic} id={String(item.id)}/>
               )}
             >
             </FlatList>

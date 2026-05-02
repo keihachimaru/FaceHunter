@@ -4,7 +4,6 @@ import { useRouter } from 'expo-router';
 import { Colors } from '@/constants/Colors';
 import { blockFriend } from '@/services/friendService';
 import { shotMessage, playerType } from '@/interfaces/game';
-import { GiPistolBullet } from "react-icons/gi";
 import {
     getGamemodeInfo
 } from '@/services/gamemodeService';

@@ -9,9 +9,9 @@ import Feed from '@/components/layout/Feed';
 import Taskbar from '@/components/layout/Taskbar';
 import { getSession, register, login } from '../services/authService';
 import { topPosts, likePost } from '../services/postService';
-import { UserType } from '../interfaces';
+import { UserType, userType, LoginType, RegisterType, Post } from '../interfaces';
 import { Colors } from '../constants/Colors';
-import ImmersiveMode from 'react-native-immersive';
+import { enableImmersive, disableImmersive } from '@/utils/immersive';
 import LoadingScreen from '@/components/layout/LoadingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DeepButton from '@/components/ui/DeepButton';
@@ -22,7 +22,7 @@ export default function Home() {
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
 
-  const [session, setSession] = useState<number | null>(null);
+  const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,10 +63,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    ImmersiveMode.on();
+    enableImmersive();
 
     return () => {
-      ImmersiveMode.off();
+      disableImmersive();
     };
   }, []);
 
