@@ -250,7 +250,7 @@ export default function Join() {
                     playerOptions={playerOptions}
                     buyBullet={buyBullet}
                     handleJoinGame={handleJoinGame}
-                    waitingPlayers={[numPlayers, numReady]}
+                    waitingPlayers={{ joined: numPlayers, total: numReady }}
                 />               
             )}
         </View>

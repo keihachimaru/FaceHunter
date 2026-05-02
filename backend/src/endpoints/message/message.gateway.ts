@@ -77,8 +77,8 @@ export class MessageGateway
 
         if(currentUserID==otherUserID) throw new BadRequestException('Can not chat with yourself');
 
-        const currentUser = this.userService.findById(currentUserID);
-        const otherUser = this.userService.findById(otherUserID);
+        const currentUser = await this.userService.findById(currentUserID);
+        const otherUser = await this.userService.findById(otherUserID);
         
         if(!currentUser || !otherUser) {
             throw new NotFoundException('User not found');

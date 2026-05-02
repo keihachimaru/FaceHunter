@@ -15,16 +15,19 @@ export const Colors = {
 
   // Backgrounds
   background: '#0E0E0E',
+  backgroundLight: '#252525',
   backgroundElevated: '#1A1A1A',
   backgroundHighlight: '#252525',
 
   // Card
   card: '#1A1A1A',
+  cardBackground: '#1A1A1A',
   cardBorder: '#333333',
 
   // Text
   textPrimary: '#F1F1F1',
   textSecondary: '#AAAAAA',
+  textTertiary: '#8A8A8A',
   textMuted: '#717171',
 
   // Interactive
@@ -46,6 +49,7 @@ export const Colors = {
 
   // Semantic
   success: '#2E7D32',
+  successDark: '#1B5E20',
   successLight: '#4CAF50',
   warning: '#F57F17',
   warningLight: '#FFB300',
@@ -53,6 +57,12 @@ export const Colors = {
   errorLight: '#EF5350',
   info: '#1565C0',
   infoLight: '#42A5F5',
+
+  // Additional accents (HP bars, status)
+  tertiary: '#FF6B35',
+  tertiaryDark: '#CC4400',
+  quaternary: '#00B894',
+  quaternaryDark: '#00805E',
 
   // Grayscale
   gray100: '#F5F5F5',

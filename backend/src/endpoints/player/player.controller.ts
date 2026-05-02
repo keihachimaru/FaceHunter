@@ -194,16 +194,15 @@ export class PlayerController {
     }
     
     @UseGuards(JwtPlayerAuthGuard)
+    @Patch('changeWeapon')
     async changeWeapon(
         @Req() req: Request,
-        @Body() weaponID: string
+        @Body('weaponID') weaponID: string
     ) {
         const { id: playerId } = req['player'];
-        const weapon = this.weaponService.findById(weaponID);
+        const weapon = await this.weaponService.findById(weaponID);
 
         if(!weapon) throw new NotFoundException('No such weapon exists');
-
-        const player = this.playerService.findById(playerId);
 
         await this.playerService.update(playerId, {
             weapon: weaponID

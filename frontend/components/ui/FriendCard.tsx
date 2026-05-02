@@ -25,7 +25,7 @@ export default function FriendCard({ name, profilePic, id }: FriendCardProps) {
                     style={styles.profilePic}/>
             ) : (
                 <View
-                    style={[ styles.profilePic, { backgroundColor : 'white', borderRadius: '50%' }]}
+                    style={[ styles.profilePic, { backgroundColor : Colors.secondary, borderRadius: 999 }]}
                 >
                 </View>
             )

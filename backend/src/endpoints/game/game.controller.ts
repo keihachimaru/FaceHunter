@@ -44,7 +44,7 @@ export class GameController {
     ) {
         console.log('Creating game ...');
         const gameTypeName = dto.gameType;
-        const gamemode = this.gamemodeService.findByName(gameTypeName);
+        const gamemode = await this.gamemodeService.findByName(gameTypeName);
 
         if(!gamemode) throw new NotFoundException('No such gamemode');
 

@@ -15,7 +15,7 @@ export async function logout() {
     }
 }
 
-export async function register(dto: { email: string; password: string; name: string }) {
+export async function register(dto: { email: string; password: string; username: string }) {
   try {
     console.log('Sending register request', dto);
     const res = await fetch(`${API_BASE}/register`, {

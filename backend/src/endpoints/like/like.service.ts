@@ -60,8 +60,6 @@ export class LikeService {
     
     async getLikeByAuthorAndFacehunt(userId: string, facehuntId: string) {
         const like = await this.likeModel.findOne({ author: userId, facehunt: facehuntId });
-        if(!like) throw new NotFoundException('Like not found');
-
         return like;
     }
 }

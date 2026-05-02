@@ -9,10 +9,10 @@ export class Facehunt extends Document {
     @Prop({ required: true, type: Types.ObjectId })
     author: string;
 
-    @Prop({ required: true, type: Types.ObjectId })
+    @Prop({ required: true })
     game: string;
 
-    @Prop({ required: true, type: Types.ObjectId })
+    @Prop({ required: true })
     image: string;
 }
 

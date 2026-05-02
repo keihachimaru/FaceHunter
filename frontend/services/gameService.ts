@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API_BASE = API+'/game'; // change to your backend URL
 
-export async function notifyFriends(user: userType) {
-    console.log(`Notifying to friends of ${user.username}`)
+export async function notifyFriends(gameId: string) {
+    console.log(`Notifying friends about game ${gameId}`)
 }
 
 export async function createGame(game: gameType) : Promise<string> {

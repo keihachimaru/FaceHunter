@@ -50,15 +50,15 @@ export default function JoinOptions({
         onPress={handleJoinGame}
       />
       {/* Player Progress */}
-      <Text>{ waitingPlayers }</Text>
+      <Text>{ waitingPlayers?.joined ?? 0 } / { waitingPlayers?.total ?? 0 }</Text>
       <View style={styles.progressBarContainer}>
         <View style={styles.progressBarBackground}>
-          {Array.from({ length: waitingPlayers[0] || 0 }).map((_, i) => (
+          {Array.from({ length: waitingPlayers?.joined ?? 0 }).map((_, i) => (
             <View
               key={i}
               style={[
                 styles.progressSegment,
-                i < (waitingPlayers[1] || 0)
+                i < (waitingPlayers?.total ?? 0)
                   ? styles.segmentReady
                   : styles.segmentWaiting,
               ]}

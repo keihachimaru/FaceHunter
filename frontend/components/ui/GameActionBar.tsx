@@ -39,12 +39,12 @@ export default function GameActionBar({ player, fire, fired, cooldown }: GameAct
             <View
               style={[
                 styles.hpBarFill,
-                { width: `${player?.remainingHP/ 100 * 100}%`, backgroundColor: hpColor(player?.remainingHP/100 * 100) },
+                { width: `${(player?.health ?? 0) / 100 * 100}%`, backgroundColor: hpColor((player?.health ?? 0) / 100 * 100) },
               ]}
             >
             </View>
             <Text style={styles.textHP}>
-                {player?.remainingHP} / { 100 }
+                {player?.health ?? 0} / { 100 }
             </Text>
           </View>
     
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         borderWidth: 8,
         borderColor: Colors.primary,
         backgroundColor: Colors.primaryLight,
-        borderRadius: '50%',
+        borderRadius: 999,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         borderWidth: 8,
         borderColor: Colors.gray600,
         backgroundColor: Colors.gray400,
-        borderRadius: '50%',
+        borderRadius: 999,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

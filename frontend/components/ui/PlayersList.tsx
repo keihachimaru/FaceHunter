@@ -23,7 +23,7 @@ export default function FriendCard({ otherPlayers }: playerType[] ) {
               key={idx}
               style={[
                 { color: Colors.textPrimary },
-                p.health === 0 && { color: colors.error },
+                p.health === 0 && { color: Colors.error },
                 styles.playerRow
               ]}
             >
