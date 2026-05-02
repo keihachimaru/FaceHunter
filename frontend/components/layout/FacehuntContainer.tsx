@@ -13,7 +13,7 @@ interface FacehunterContainerProps {
 export default function FacehunterContainer({ image, hasLiked, setHasLiked, onPress }: FacehunterContainerProps ) {
   return (
     <View style={styles.facehuntContainer}>
-      <View style={[ styles.facehuntImageContainer , { backgroundColor: Colors.light.background }]}>
+      <View style={[ styles.facehuntImageContainer , { backgroundColor: Colors.background }]}>
          <Image source={{ uri: image }} style={styles.facehuntImage}/>
       </View>
 

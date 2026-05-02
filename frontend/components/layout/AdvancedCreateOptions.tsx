@@ -56,10 +56,10 @@ export default function AdvancedCreateOptions({
             <Switch
               value={selectedNotifyPlayers}
               onValueChange={setNotifyPlayers}
-              thumbColor={selectedNotifyPlayers ? Colors.light.primary : Colors.light.gray500}
+              thumbColor={selectedNotifyPlayers ? Colors.primary : Colors.gray500}
               trackColor={{
-                false: Colors.light.gray300,
-                true: Colors.light.primaryLight,
+                false: Colors.gray300,
+                true: Colors.primaryLight,
               }}
             />
           </View>
@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
   toggleButton: {
     paddingVertical: 8,
     paddingHorizontal: 12,
-    backgroundColor: Colors.light.primary,
+    backgroundColor: Colors.primary,
     borderRadius: 8,
     alignItems: 'center',
   },
   toggleText: {
-    color: '#fff',
+    color: Colors.buttonText,
     fontWeight: '600',
     fontSize: 16,
   },
@@ -96,17 +96,17 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: '600',
-    color: Colors.light.textPrimary,
+    color: Colors.textPrimary,
     marginBottom: 4,
   },
   input: {
     borderWidth: 1,
-    borderColor: Colors.light.border,
+    borderColor: Colors.border,
     borderRadius: 8,
     paddingHorizontal: 8,
     paddingVertical: 6,
     fontSize: 16,
-    color: Colors.light.textPrimary,
+    color: Colors.textPrimary,
   },
   toggleRow: {
     flexDirection: 'row',

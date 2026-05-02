@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, View, Text, StyleSheet, Image, FlatList, TouchableOpacity, Alert, useColorScheme } from 'react-native';
+import { Pressable, View, Text, StyleSheet, Image, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import { getSession } from '@/services/authService';
@@ -15,8 +15,7 @@ import LoadingScreen from '@/components/layout/LoadingScreen';
 
 export default function Friends() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
+  const colors = Colors;
 
   const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);

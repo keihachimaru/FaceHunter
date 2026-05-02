@@ -28,7 +28,7 @@ export default function Taskbar({ disabled } : TaskbarProps) {
           disabled={disabled}
           style={styles.taskbarButton}
         >
-          <Image source={icon} style={[ styles.icon, { tintColor: Colors.light.buttonText } ]} />
+          <Image source={icon} style={[ styles.icon, { tintColor: Colors.buttonText } ]} />
         </TouchableOpacity>
       ))}
     </View>
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     gap: 30,
     justifyContent : 'center',
     alignItems: 'center',
-    backgroundColor: Colors.light.primaryLight,
-    shadowColor: Colors.light.shadow,
+    backgroundColor: Colors.primaryLight,
+    shadowColor: Colors.shadow,
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -57,11 +57,11 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
-    tintColor: Colors.light.textPrimary, // theme tint
+    tintColor: Colors.textPrimary, // theme tint
   },
   disabled: {
-    backgroundColor: '#A1A1AA',
-    borderBottomColor: '#888',
-    borderColor: '#666',
+    backgroundColor: Colors.gray500,
+    borderBottomColor: Colors.gray500,
+    borderColor: Colors.gray600,
   },
 });

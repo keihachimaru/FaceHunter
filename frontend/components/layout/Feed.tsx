@@ -35,11 +35,11 @@ export default function Feed({ posts, onPressPost, loadMorePosts, loadingMore }:
 
             <View style={styles.postInfo}>
               <View style={styles.infoItem}>
-                <Image source={LikeIcon} style={[ styles.iconBig, { tintColor: Colors.light.quaternaryDark }]} />
+                <Image source={LikeIcon} style={[ styles.iconBig, { tintColor: Colors.quaternaryDark }]} />
                 <Text style={styles.postText}>{item.likes}</Text>
               </View>
               <View style={styles.infoItem}>
-                <Image source={CommentIcon} style={[ styles.icon, { tintColor: Colors.light.secondaryDark }]} />
+                <Image source={CommentIcon} style={[ styles.icon, { tintColor: Colors.secondaryDark }]} />
                 <Text style={styles.postText}>{item.commentsCount}</Text>
               </View>
             </View>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: '5%',
     overflow: 'hidden',
-    borderColor: Colors.light.primaryLight,
+    borderColor: Colors.primaryLight,
     borderBottomWidth: 4,
   },
   postImage: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
     borderWidth: 8,
-    borderColor: Colors.light.primary
+    borderColor: Colors.primary
   },
   postInfo: {
     flexDirection: 'row-reverse',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   postText: {
-    color: Colors.light.textPrimary,
+    color: Colors.textPrimary,
     textAlign: 'center',
     fontWeight: '700',
     fontSize: 16,

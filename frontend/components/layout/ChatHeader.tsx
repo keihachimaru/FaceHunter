@@ -14,7 +14,7 @@ interface ChatHeaderProps {
 }
 
 export default function ChatHeader({ otherUser }: ChatHeaderProps) {
-  const colors = Colors.light;
+  const colors = Colors;
 
   return (
     <View style={[styles.header, { backgroundColor: colors.backgroundLight, borderBottomColor: colors.borderLight }]}>
@@ -28,7 +28,7 @@ export default function ChatHeader({ otherUser }: ChatHeaderProps) {
                 />
             ) : (
                 <View
-                    style={[ styles.avatar, { backgroundColor : '#ccc', borderRadius: '50%' }]}
+                    style={[ styles.avatar, { backgroundColor : Colors.gray300, borderRadius: 999 }]}
                 >
                 </View>
             )
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     height: 90,
     // Add subtle shadow for floating effect
-    shadowColor: Colors.light.shadow,
+    shadowColor: Colors.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3,

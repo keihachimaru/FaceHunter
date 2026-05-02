@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, View, Text, StyleSheet, Image, TextInput, FlatList, TouchableOpacity, Alert, useColorScheme } from 'react-native';
+import { Pressable, View, Text, StyleSheet, Image, TextInput, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import { Colors } from '@/constants/Colors';
@@ -13,9 +13,7 @@ import { getSession, logout} from '@/services/authService';
 
 export default function Account() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
-
+  const colors = Colors;
   const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);
   const [loading, setLoading] = useState(true);

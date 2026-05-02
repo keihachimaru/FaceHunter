@@ -37,7 +37,7 @@ export default function Loading() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: Colors.background,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
@@ -45,19 +45,19 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 22,
     fontWeight: '600',
-    color: Colors.light.primaryDark,
+    color: Colors.primaryDark,
     marginBottom: 20,
   },
   barBackground: {
     width: '100%',
     height: 10,
-    backgroundColor: Colors.light.primaryLight,
+    backgroundColor: Colors.primaryLight,
     borderRadius: 5,
     overflow: 'hidden',
   },
   barFill: {
     height: '100%',
-    backgroundColor: Colors.light.primary,
+    backgroundColor: Colors.primary,
     borderRadius: 5,
   },
 });

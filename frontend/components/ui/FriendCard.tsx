@@ -18,7 +18,7 @@ export default function FriendCard({ name, profilePic, id }: FriendCardProps) {
     }
 
     return (
-        <View style={[styles.friendCard, { backgroundColor : Colors.light.tint }]}>
+        <View style={[styles.friendCard, { backgroundColor : Colors.tint }]}>
           { profilePic ? ( 
                 <Image 
                     source={{ uri: profilePic }} 
@@ -38,7 +38,7 @@ export default function FriendCard({ name, profilePic, id }: FriendCardProps) {
           >
             <Image 
                 source={require('@/assets/icons/block.png')} 
-                style={[ styles.icon, { tintColor: Colors.light.backgroundLight } ]} 
+                style={[ styles.icon, { tintColor: Colors.backgroundLight } ]} 
             /> 
           </TouchableOpacity> 
           <TouchableOpacity
@@ -47,7 +47,7 @@ export default function FriendCard({ name, profilePic, id }: FriendCardProps) {
           >
             <Image 
             source={require('@/assets/icons/messenger.png')} 
-            style={[ styles.icon, { tintColor: Colors.light.backgroundLight } ]} />
+            style={[ styles.icon, { tintColor: Colors.backgroundLight } ]} />
           </TouchableOpacity>
         </View>
     );

@@ -9,7 +9,7 @@ interface ScanQRProps {
 }
 
 export default function ScanQR({ gameId, setScanning }: ScanQRProps) {
-  const circleColor = gameId ? Colors.light.quaternary : Colors.light.secondary;
+  const circleColor = gameId ? Colors.quaternary : Colors.secondary;
   const displayText = gameId ? 'Ready' : 'Scan';
 
   return (

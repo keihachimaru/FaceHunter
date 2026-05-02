@@ -9,11 +9,11 @@ export default function FriendCard({ otherPlayers }: playerType[] ) {
     const router = useRouter();
     
     function hpColor(hp : number) {
-        if(hp >= 90) return Colors.light.primary;
-        else if(hp >= 75) return Colors.light.quaternary;
-        else if(hp >= 50) return Colors.light.secondaryDark;
-        else if(hp >= 25) return Colors.light.tertiary;
-        else return Colors.light.tertiaryDark;
+        if(hp >= 90) return Colors.primary;
+        else if(hp >= 75) return Colors.quaternary;
+        else if(hp >= 50) return Colors.secondaryDark;
+        else if(hp >= 25) return Colors.tertiary;
+        else return Colors.tertiaryDark;
     }
 
     return (
@@ -22,7 +22,7 @@ export default function FriendCard({ otherPlayers }: playerType[] ) {
             <View
               key={idx}
               style={[
-                { color: Colors.light.textPrimary },
+                { color: Colors.textPrimary },
                 p.health === 0 && { color: colors.error },
                 styles.playerRow
               ]}
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
       left: 30,
       backgroundColor: 'rgba(0,0,0,.1)',
       borderWidth: 1,
-      borderColor: Colors.light.primary,
+      borderColor: Colors.primary,
       borderRadius: 8,
       paddingBottom: 5,
   },
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       borderBottomLeftRadius: 3,
       borderBottomRightRadius: 3,
-      color: Colors.light.textTertiary,
+      color: Colors.textTertiary,
       overflow: 'hidden',
       width: 100,
   },
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 5,
   },
   playerHealth: {
-      backgroundColor: '#222',
+      backgroundColor: Colors.gray800,
       height: 5,
       width: '100%',
   },

@@ -9,7 +9,7 @@ import {
   Image
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useColorScheme } from 'react-native';
+
 import { Colors } from '@/constants/Colors';
 
 import { getSession } from '@/services/authService';
@@ -50,8 +50,7 @@ const { width, height } = Dimensions.get('window');
 export default function Game() {
   const { gameId } = useLocalSearchParams();
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'light' ? Colors.dark : Colors.light;
+  const colors = Colors;
 
   const [shotMessages, setShotMessages] = useState([]);
   const { player, setPlayer } = usePlayerStore();
@@ -266,7 +265,7 @@ export default function Game() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa', // Light background
+    backgroundColor: Colors.backgroundElevated,
   },
   camera: {
     ...StyleSheet.absoluteFillObject,
@@ -283,7 +282,7 @@ const styles = StyleSheet.create({
       aspectRatio: 1,
       borderRadius: 18,
       borderWidth: 8,
-      borderColor: Colors.light.primary
+      borderColor: Colors.primary
   },
   votingSection : {
       display: 'flex',
@@ -314,7 +313,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginVertical: 6,
     borderRadius: 12,
-    shadowColor: Colors.light.shadow,
+    shadowColor: Colors.shadow,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 6,

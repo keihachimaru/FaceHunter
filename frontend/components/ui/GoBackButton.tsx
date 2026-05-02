@@ -15,7 +15,7 @@ export default function BackButton({ direction } : BackButtonProps ) {
       onPress={() => router.push(dir)}
       style={[styles.button]}
     >
-        <Image source={require('@/assets/icons/arrow-right.png')} style={[ styles.icon, { tintColor: Colors.light.primary } ]} />
+        <Image source={require('@/assets/icons/arrow-right.png')} style={[ styles.icon, { tintColor: Colors.primary } ]} />
     </TouchableOpacity>
   );
 }
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   disabled: {
-    backgroundColor: '#a1a1aa',
+    backgroundColor: Colors.gray500,
   },
   icon: {
     width: 24,

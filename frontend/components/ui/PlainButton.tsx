@@ -28,7 +28,7 @@ export default function Button({ title, onPress, style, textStyle, disabled }: B
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.light.primary,
+    backgroundColor: Colors.primary,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -36,13 +36,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: Colors.light.buttonText,
+    color: Colors.buttonText,
     fontWeight: '700',
     fontSize: 20,
   },
   disabled: {
-    backgroundColor: '#A1A1AA',
-    borderBottomColor: '#888',
-    borderColor: '#666',
+    backgroundColor: Colors.gray500,
+    borderBottomColor: Colors.gray500,
+    borderColor: Colors.gray600,
   },
 });

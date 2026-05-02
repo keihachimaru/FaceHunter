@@ -14,7 +14,7 @@ export async function getGamemodeOptions(): Promise<gamemodeOptionsType | null> 
         return await res.json();
     }
     catch(err) {
-        concole.error('Failed to get gamemode options : '+err);
+        console.error('Failed to get gamemode options : '+err);
         throw err;
     }
 }

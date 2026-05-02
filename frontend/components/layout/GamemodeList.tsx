@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 22,
     fontWeight: '600',
-    color: Colors.light.textPrimary,
+    color: Colors.textPrimary,
     textAlign: 'center',
     marginBottom: 20,
   },

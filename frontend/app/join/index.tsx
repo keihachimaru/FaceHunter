@@ -10,7 +10,8 @@ import {
     FlatList,
     Button as RNButton,
     Dimensions,
-    useColorScheme
+
+
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { CameraView, useCameraPermissions } from 'expo-camera';
@@ -37,8 +38,7 @@ const debugLink = process.env.EXPO_PUBLIC_DEBUG_LINK || Constants.expoConfig?.ex
 
 export default function Join() {
     const router = useRouter();
-    const colorScheme = useColorScheme();
-    const colors = Colors.light;
+    const colors = Colors;
     const params = useLocalSearchParams<{ gameId?: string }>();
     const initialGameId = params.gameId;
 
@@ -141,7 +141,7 @@ export default function Join() {
                 </View>
 
                 <View style={styles.controls}>
-                    <RNButton title="Cancel" onPress={() => setScanning(false)} color="#777" />
+                    <RNButton title="Cancel" onPress={() => setScanning(false)} color={Colors.textMuted} />
                 </View>
             </View>
         );
@@ -214,7 +214,7 @@ export default function Join() {
                         title="Take picture"
                         onPress={handleTakePicture}
                     />
-                    <RNButton title="Cancel" onPress={() => setTakingPicture(false)} color="#777" />
+                    <RNButton title="Cancel" onPress={() => setTakingPicture(false)} color={Colors.textMuted} />
                 </View>
             </View>
         );
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        backgroundColor: '#f8f9fa'
+        backgroundColor: Colors.background
     },
     cameraContainer: {
         flex: 1,
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
         width: 250,
         height: 250,
         borderWidth: 3,
-        borderColor: Colors.light.secondary,
+        borderColor: Colors.secondary,
         backgroundColor: 'transparent',
         borderRadius: 8
     },
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         borderWidth: 3,
-        borderColor: Colors.light.primary,
+        borderColor: Colors.primary,
         backgroundColor: 'transparent',
         borderRadius: 8
     },
@@ -298,6 +298,6 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         borderWidth: 3,
-        borderColor: Colors.light.primary,
+        borderColor: Colors.primary,
     }
 });

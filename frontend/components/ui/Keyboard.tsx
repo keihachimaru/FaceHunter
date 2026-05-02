@@ -36,7 +36,7 @@ export default function ChatKeyboard({ onSend, placeholder, autoDismiss }: Keybo
           value={text}
           onChangeText={setText}
           placeholder={keyboardPlaceholder}
-          placeholderTextColor="#999"
+          placeholderTextColor={Colors.textMuted}
           style={styles.textBox}
           multiline
           onFocus={() => setFocused(true)}
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     alignItems: "center",
-    backgroundColor: Colors.light.primaryLight,
+    backgroundColor: Colors.primaryLight,
   },
   textBox: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.gray100,
     borderRadius: 25,
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
   sendText: {
     height: 32,
     width: 32,
-    tintColor: "#fff",
+    tintColor: Colors.secondary,
   },
 });

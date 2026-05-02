@@ -13,7 +13,7 @@ import { usePlayerStore } from '@/stores/usePlayerStore';
 
 export default function RoundInfo({ otherPlayers, gameInfo, shotMessages, setDead }) {
     const router = useRouter();
-    const colors = Colors.light;
+    const colors = Colors;
     const [timeRemaining, setTimeRemaining] = useState(null);
     const [round, setRound] = useState(null);
 
@@ -117,15 +117,15 @@ export default function RoundInfo({ otherPlayers, gameInfo, shotMessages, setDea
                 shotMessages.map((msg, idx)=>(
                     <View key={idx} style={[
                         styles.shotMessage,
-                        { borderColor: msg.valid ? Colors.light.tertiary : Colors.light.gray700,  }
+                        { borderColor: msg.valid ? Colors.tertiary : Colors.gray700,  }
                     ]}>
                         
-                        <Text style={{ color: msg.valid ? Colors.light.tertiary : Colors.light.gray700}}>
+                        <Text style={{ color: msg.valid ? Colors.tertiary : Colors.gray700}}>
                             {otherPlayers.find(p => p.id == msg.shooterID)?.name}
                         </Text>
                         <View style={styles.bulletIcon}>
                         </View>
-                        <Text style={{ color: msg.valid ? Colors.light.tertiary : Colors.light.gray700}}>
+                        <Text style={{ color: msg.valid ? Colors.tertiary : Colors.gray700}}>
                             {otherPlayers.find(p => p.id == msg.targetID)?.name}
                         </Text>
                     </View>
@@ -150,9 +150,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     roundText : {
-        color: Colors.light.textPrimary,
+        color: Colors.textPrimary,
         fontWeight: 'bold',
-        backgroundColor: Colors.light.primary,
+        backgroundColor: Colors.primary,
         width: 125,
         textAlign: 'center',
         paddingVertical: 5,
@@ -188,9 +188,9 @@ const styles = StyleSheet.create({
     bulletIcon : {
         height: 8,
         width: 25,
-        backgroundColor: '#222',
+        backgroundColor: Colors.gray800,
         borderWidth: 1,
-        borderColor: Colors.light.primary,
+        borderColor: Colors.primary,
         borderTopRightRadius: 5,
         borderBottomRightRadius: 5,
     }

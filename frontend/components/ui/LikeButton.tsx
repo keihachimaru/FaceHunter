@@ -16,7 +16,7 @@ export default function LikeButton({ onPress, style, liked, dislike }: LikeButto
   return (
     <TouchableOpacity onPress={onPress} style={[styles.likeButton, { transform : dislike ? 'rotate(180deg)' : ''}]}>
       <Image
-        source={liked ? Liked : NotLiked } style={[styles.icon, { tintColor: style?.tintColor ?? Colors.light.quaternaryDark, width: style?.width ?? 24, height: style?.height??24 }]}
+        source={liked ? Liked : NotLiked } style={[styles.icon, { tintColor: style?.tintColor ?? Colors.quaternaryDark, width: style?.width ?? 24, height: style?.height??24 }]}
       />
     </TouchableOpacity>
   );

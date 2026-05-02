@@ -28,7 +28,7 @@ export default function DeepButton({ title, onPress, style, textStyle, disabled 
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.light.buttonBackground,
+    backgroundColor: Colors.buttonBackground,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -36,15 +36,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
     // 3D bottom shadow effect
-    borderBottomColor: Colors.light.buttonBackgroundDark,
+    borderBottomColor: Colors.buttonBackgroundDark,
     borderBottomWidth: 4,
 
     // outline
-    borderColor: Colors.light.border,
+    borderColor: Colors.border,
     borderWidth: 2,
   },
   text: {
-    color: Colors.light.buttonText,
+    color: Colors.buttonText,
     fontWeight: '700',
     fontSize: 20,
     textShadowColor: 'rgba(0,0,0,0.3)',
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     textShadowRadius: 1,
   },
   disabled: {
-    backgroundColor: '#A1A1AA',
-    borderBottomColor: '#888',
-    borderColor: '#666',
+    backgroundColor: Colors.gray500,
+    borderBottomColor: Colors.gray500,
+    borderColor: Colors.gray600,
   },
 });

@@ -1,7 +1,7 @@
 // app/index.tsx
 
 import React, { useEffect, useState } from 'react';
-import { Text, Pressable, View, StyleSheet, Alert, useColorScheme } from 'react-native';
+import { Text, Pressable, View, StyleSheet, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import Authentication from '@/components/layout/Authentication';
@@ -19,8 +19,7 @@ import DeepButton from '@/components/ui/DeepButton';
 export default function Home() {
   console.log('JS thread running!');
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
+  const colors = Colors;
 
   const [session, setSession] = useState<string | null>(null);
   const [user, setUser] = useState<userType | null>(null);

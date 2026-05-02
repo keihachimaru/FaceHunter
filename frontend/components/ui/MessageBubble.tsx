@@ -16,7 +16,7 @@ export default function MessageBubble({ content, image, timestamp, isOwn }: Mess
       {image ? (
         <Image source={{ uri: image }} style={styles.messageImage} />
       ) : (
-        <Text style={[styles.messageText, { color: isOwn ? "#fff" : "#000" }]}>
+        <Text style={[styles.messageText, { color: isOwn ? Colors.secondary : Colors.textPrimary }]}>
           {content}
         </Text>
       )}
@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   own: {
-    backgroundColor: Colors.light.primary,
+    backgroundColor: Colors.primary,
     alignSelf: "flex-end",
   },
   other: {
-    backgroundColor: Colors.light.gray300,
+    backgroundColor: Colors.gray300,
     alignSelf: "flex-start",
   },
   messageText: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   timestamp: {
     fontSize: 11,
-    color: "#666",
+    color: Colors.textMuted,
     alignSelf: "flex-end",
     marginTop: 4,
   },

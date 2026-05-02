@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, KeyboardAvoidingView, Platform, StyleSheet, TextInput, Image, FlatList, TouchableOpacity, useColorScheme } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Platform, StyleSheet, TextInput, Image, FlatList, TouchableOpacity } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { getSession } from '@/services/authService';
 import { getOtherUserData } from '@/services/chatService';
@@ -21,8 +21,7 @@ type ChatListItem =
 
 export default function Chat() {
     const router = useRouter();
-    const colorScheme = useColorScheme();
-    const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
+    const colors = Colors;
     const { chatId } = useLocalSearchParams();
 
     const [session, setSession] = useState<string | null>(null);
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginVertical: 8,
         fontSize: 12,
-        color: "#666"
+        color: Colors.textMuted
     },
     messageWrapper: {
         maxWidth: "70%",
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
     },
     timestamp: {
         fontSize: 10,
-        color: "#555",
+        color: Colors.textMuted,
         marginTop: 4,
         alignSelf: "flex-end"
     },

@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   creditsText: {
     fontWeight: '700',
-    color: Colors.light.secondary,
+    color: Colors.secondary,
     fontSize: 16,
   },
   label: {
@@ -91,18 +91,18 @@ const styles = StyleSheet.create({
   option: {
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: Colors.light.primaryLight,
+    backgroundColor: Colors.primaryLight,
     borderRadius: 20,
     marginRight: 10,
     borderWidth: 1,
-    borderColor: Colors.light.border,
+    borderColor: Colors.border,
   },
   selectedOption: {
-    backgroundColor: Colors.light.primary,
-    borderColor: Colors.light.quaternaryDark,
+    backgroundColor: Colors.primary,
+    borderColor: Colors.quaternaryDark,
   },
   optionText: {
-    color: Colors.light.textPrimary,
+    color: Colors.textPrimary,
     fontWeight: '500',
   },
   selectedText: {
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   readyButton: {
-    backgroundColor: Colors.light.quaternaryDark,
+    backgroundColor: Colors.quaternaryDark,
     marginVertical: 10,
   },
   progressBarContainer: {
@@ -126,25 +126,25 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 3,
     flexDirection: 'row',
-    backgroundColor: Colors.light.cardBackground,
+    backgroundColor: Colors.cardBackground,
   },
   progressSegment: {
     flex: 1,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: Colors.light.primaryLight,
+    borderColor: Colors.primaryLight,
   },
   segmentReady: {
-    backgroundColor: '#4CAF50',
-    backgroundColor: Colors.light.primary,
+    backgroundColor: Colors.successLight,
+    backgroundColor: Colors.primary,
   },
   segmentWaiting: {
-    backgroundColor: '#555',
-    backgroundColor: Colors.light.cardBackground,
+    backgroundColor: Colors.gray600,
+    backgroundColor: Colors.cardBackground,
   },
   tip: {
     fontStyle: 'italic',
-    color: Colors.light.textSecondary,
+    color: Colors.textSecondary,
     marginTop: 10,
   },
 });

@@ -13,7 +13,7 @@ interface GameOverlayProps {
 
 export default function GameOverlay({ dead, weapon }: GameOverlayProps ) {
     const router = useRouter();
-    const colors = Colors.light;
+    const colors = Colors;
 
     return (
         <View style={styles.overlay}>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         left: 0, 
         top: 0, 
         right: 0,
-        backgroundColor: Colors.light.tertiaryDark,
+        backgroundColor: Colors.tertiaryDark,
         opacity: .5,
         pointerEvents: 'auto',
         zIndex: 6,

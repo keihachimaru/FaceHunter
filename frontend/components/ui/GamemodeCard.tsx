@@ -38,8 +38,8 @@ export default function GamemodeCard({ gamemode, isSelected, onSelect }: Gamemod
           width: cardWidth,
           aspectRatio: 1.2,
           paddingVertical: expanded ? 15 : 20,
-          borderColor: isSelected ? Colors.light.primary : Colors.light.border,
-          backgroundColor: isSelected ? Colors.light.cardBackground : Colors.light.backgroundLight,
+          borderColor: isSelected ? Colors.primary : Colors.border,
+          backgroundColor: isSelected ? Colors.cardBackground : Colors.backgroundLight,
         },
       ]}
     >
@@ -52,7 +52,7 @@ export default function GamemodeCard({ gamemode, isSelected, onSelect }: Gamemod
             <Text
                 style={[
                     styles.title,
-                    { color: isSelected ? Colors.light.primaryDark : Colors.light.border },
+                    { color: isSelected ? Colors.primaryDark : Colors.border },
                 ]}
             >
                 {gamemode.name}
@@ -89,7 +89,7 @@ export default function GamemodeCard({ gamemode, isSelected, onSelect }: Gamemod
 
 const styles = StyleSheet.create({
   card: {
-    background: Colors.light.background,
+    background: Colors.background,
     borderRadius: 12,
     padding: 12,
     display: 'flex',
@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
   toggleButton: {
     paddingVertical: 6,
     paddingHorizontal: 8,
-    backgroundColor: Colors.light.primary,
+    backgroundColor: Colors.primary,
     borderRadius: 8,
     alignItems: 'center',
   },
   toggleText: {
-    color: '#fff',
+    color: Colors.buttonText,
     fontWeight: '600',
     textAlign: 'center',
     fontSize: 14,

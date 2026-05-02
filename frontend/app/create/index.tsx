@@ -10,7 +10,7 @@ import {
   Button as RNButton,
   Switch,
   TextInput,
-  useColorScheme,
+
   Image
 } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -37,8 +37,7 @@ const debugLink =
 
 export default function Create() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = Colors.light;
+  const colors = Colors;
 
   const [loading, setLoading] = useState(true);
 

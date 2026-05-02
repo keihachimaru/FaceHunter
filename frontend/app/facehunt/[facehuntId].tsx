@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Pressable, View, Text, StyleSheet, TextInput, Image, FlatList, TouchableOpacity, Alert, useColorScheme, KeyboardAvoidingView, Platform } from 'react-native';
+import { Pressable, View, Text, StyleSheet, TextInput, Image, FlatList, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 
 import { getSession } from '@/services/authService';
@@ -17,8 +17,7 @@ import Keyboard from '@/components/ui/Keyboard';
 
 export default function Facehunt() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
+  const colors = Colors;
   const { facehuntId } = useLocalSearchParams();
 
   const [session, setSession] = useState<string | null>(null);

@@ -1,6 +1,6 @@
 // Authentication.tsx
 import React, { useState } from 'react';
-import { useColorScheme, View, Text, TextInput, Pressable, StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import DeepButton from '@/components/ui/DeepButton';
 import { RegisterType, LoginType } from '../interfaces';
@@ -26,8 +26,7 @@ export default function Authentication({
   isLoginMode,
   setIsLoginMode
 }: AuthenticationProps) {
-  const colorScheme = useColorScheme();
-  const colors = colorScheme === 'dark' ? Colors.light : Colors.light;
+  const colors = Colors;
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: colors.background}}

@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginVertical: 8,
     fontSize: 12,
-    color: "#888",
+    color: Colors.textMuted,
   },
 });

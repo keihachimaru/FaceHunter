@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     marginTop: 80,
     alignItems: 'center',
     borderWidth: 5,
-    borderColor: Colors.light.primary,
+    borderColor: Colors.primary,
     aspectRatio: 1,
     width: 280,
     display: 'flex',

@@ -17,14 +17,14 @@ interface GameActionBarProps {
 
 export default function GameActionBar({ player, fire, fired, cooldown }: GameActionBarProps ) {
     const router = useRouter();
-    const colors = Colors.light;
+    const colors = Colors;
     
     function hpColor(hp : number) {
-        if(hp >= 90) return Colors.light.primary;
-        else if(hp >= 75) return Colors.light.quaternary;
-        else if(hp >= 50) return Colors.light.secondaryDark;
-        else if(hp >= 25) return Colors.light.tertiary;
-        else return Colors.light.tertiaryDark;
+        if(hp >= 90) return Colors.primary;
+        else if(hp >= 75) return Colors.quaternary;
+        else if(hp >= 50) return Colors.secondaryDark;
+        else if(hp >= 25) return Colors.tertiary;
+        else return Colors.tertiaryDark;
     }
     // max hp is 100 for everyone for now
     // bullets doenst matter, this is face mode
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         display: 'flex',
         justifyContent: 'center',
-        borderColor: Colors.light.primary,
+        borderColor: Colors.primary,
         borderRadius: 10,
         overflow: 'hidden',
         position: 'relative',
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
         height: 70,
         width: 70,
         borderWidth: 8,
-        borderColor: Colors.light.primary,
-        backgroundColor: Colors.light.primaryLight,
+        borderColor: Colors.primary,
+        backgroundColor: Colors.primaryLight,
         borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
         height: 70,
         width: 70,
         borderWidth: 8,
-        borderColor: Colors.light.gray600,
-        backgroundColor: Colors.light.gray400,
+        borderColor: Colors.gray600,
+        backgroundColor: Colors.gray400,
         borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
@@ -143,9 +143,9 @@ const styles = StyleSheet.create({
     bullet: {
         height: 25,
         width: 8,
-        backgroundColor: '#222',
+        backgroundColor: Colors.gray800,
         borderWidth: 1,
-        borderColor: Colors.light.primary,
+        borderColor: Colors.primary,
         borderTopRightRadius: 5,
         borderTopLeftRadius: 5,
     }
